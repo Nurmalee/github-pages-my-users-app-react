@@ -23,6 +23,7 @@
 
 .back-to-results-btn {
     border: none;
+    /* outline: none; */
     background-color: transparent;
     display: flex;
     align-items: center;
@@ -31,7 +32,7 @@
 .back-arrow-icon {
     height: 35px !important;
     width: 35px !important;
-    color: teal;
+    color: rgb(55, 211, 195);;
 }
 
 .more__user-details {
@@ -43,7 +44,7 @@
 .user__picture {
     height: 150px !important;
     width: 150px !important;
-    border: 5px solid teal;
+    border: 5px solid rgb(55, 211, 195);
     margin-right: 15px;
 }
 
@@ -63,26 +64,26 @@
 .user__email {
     background-color: #ddd;
     /* max-width: 200px; */
-    display: flex;
     flex-wrap: wrap;
+    font-size: 10px;
+    
 }
 
 .user__registered {
-    background-color: rgb(228, 188, 194);
-    align-self: flex-start;
+    background-color: rgb(242, 194, 201);
+    font-weight: 700;
 }
 
 .user__email,
 .user__registered {
     padding: 8px 15px;
     border-radius: 10px;
+    font-size: 10px;
+    margin: 15px 0;
 }
 
-.user__registered,
-.user__email,
 .user__phone,
 .user__cell {
     font-size: 10px;
-    margin: 25px 0;
+    margin: 20px 0;
 }
-
