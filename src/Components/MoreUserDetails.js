@@ -7,7 +7,7 @@ import { BiEnvelope } from 'react-icons/bi';
 import { FiPhoneCall } from 'react-icons/fi';
 import { BsPhone } from 'react-icons/bs';
 
-function MoreUserDetails ({title, firstName, lastName, streetNum, streetName, city, state, email, phone, cell, age, registered, open, onClose, picture}) {
+function MoreUserDetails ({searchedUser, title, firstName, lastName, streetNum, streetName, city, state, email, phone, cell, age, registered, open, onClose, picture}) {
     if(!open) return null
     return ReactDom.createPortal (
         <>

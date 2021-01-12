@@ -18,6 +18,8 @@ function Dashboard() {
     const [users, setUsers] = useState(allUsers);
     const [genders] = useState(usersGender);
     const [activeGenderList, setActiveGenderList] = useState("All Users");
+    const [searchInput, setSearchInput] = useState("");
+    const [searchedUser, setSearchedUser] = useState({});
 
     const filterUsers = (gender) => {
         const genderUsers = (allUsers).filter(user => (user.gender === gender))
@@ -29,6 +31,21 @@ function Dashboard() {
         }
     }
 
+    const handleSearchForm = (e) => {
+        e.preventDefault();
+        const searchResult = allUsers.find(user => {
+            const {name:{first, last}} = user;
+            return (first === searchInput || last === searchInput);
+        })
+
+        setSearchedUser(searchResult)
+        // console.log(searchedUser);
+
+        // const {name:{title, first, last}, location:{street:{number, name}, city, state}, email, phone, cell, dob:{age}, registered:{date}, picture:{large}, id:{value}} = searchResult;
+    }
+
+    // console.log(searchedUser);
+
     return (
         <div className="dashboard">
             <div className="dashboard__left">
@@ -37,10 +54,10 @@ function Dashboard() {
                     <p>Welcome to your dashboard, kindly sort through the user base</p>
                 </div>
 
-                <form>
+                <form onSubmit={handleSearchForm}>
                     <div className="form-control">
                         <FiSearch className="form-control__searchIcon"/>
-                        <input type="text" placeholder="Find a user"/>
+                        <input type="text" placeholder="Find a user" value={searchInput} onChange={(e) => {setSearchInput(e.target.value)}} />
                     </div>
                 </form>
 
@@ -61,7 +78,7 @@ function Dashboard() {
                     </div>
                 </form>
 
-                <UsersList users={users} className="users__list" />
+                <UsersList users={users} searchedUser={searchedUser} className="users__list" />
 
                 <div className="dashboard__right-footer">
                    <button className="list__download-btn"> <IoIosCloudDownload className="download-icon"/> Download Results </button>
