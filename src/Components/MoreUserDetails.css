@@ -1,15 +1,3 @@
-.modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 400px;
-    width: 400px;
-    background-color: #fff;
-    z-index: 1000;
-    border: 2px solid black;
-}
-
 .overlay {
     position: fixed;
     top: 0;
@@ -19,3 +7,82 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+    width: 400px;
+    background-color: whitesmoke;
+    z-index: 1000;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.back-to-results-btn {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.back-arrow-icon {
+    height: 35px !important;
+    width: 35px !important;
+    color: teal;
+}
+
+.more__user-details {
+    margin-top: 20px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.user__picture {
+    height: 150px !important;
+    width: 150px !important;
+    border: 5px solid teal;
+    margin-right: 15px;
+}
+
+.user__name {
+    margin-bottom: 15px;
+}
+
+.user__name > span {
+    font-weight: 300;
+}
+
+.user__address {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.user__email {
+    background-color: #ddd;
+    /* max-width: 200px; */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user__registered {
+    background-color: rgb(228, 188, 194);
+    align-self: flex-start;
+}
+
+.user__email,
+.user__registered {
+    padding: 8px 15px;
+    border-radius: 10px;
+}
+
+.user__registered,
+.user__email,
+.user__phone,
+.user__cell {
+    font-size: 10px;
+    margin: 25px 0;
+}
+

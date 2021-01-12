@@ -6,7 +6,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { BiEnvelope } from 'react-icons/bi';
 import { FiPhoneCall } from 'react-icons/fi';
 
-function User({title, firstName, lastName, streetNum, streetName, city, state, email, phone, picture}) {
+function User({title, firstName, lastName, streetNum, streetName, city, state, email, age, registered, phone, cell, picture}) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +35,7 @@ function User({title, firstName, lastName, streetNum, streetName, city, state, e
                 <ArrowForwardIcon className="user__btn-icon" />
             </div>
 
-            <MoreUserDetails firstName={firstName} open={isOpen} onClose={() => {setIsOpen(false)}} />
+            <MoreUserDetails title={title} firstName={firstName} lastName={lastName} streetNum={streetNum} streetName={streetName} city={city} state={state} email={email} phone={phone} cell={cell} age={age} registered={registered} picture={picture} open={isOpen} onClose={() => {setIsOpen(false)}} />
 
         </div>
     )
