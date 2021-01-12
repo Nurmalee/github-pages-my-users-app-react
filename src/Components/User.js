@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './User.css';
+import MoreUserDetails from './MoreUserDetails';
 import { Avatar } from '@material-ui/core';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-// import ReactDom from 'react-dom';
 import { BiEnvelope } from 'react-icons/bi';
 import { FiPhoneCall } from 'react-icons/fi';
 
@@ -34,7 +34,9 @@ function User({title, firstName, lastName, streetNum, streetName, city, state, e
             <div className="user__btn" onClick={showOpenBtn}>
                 <ArrowForwardIcon className="user__btn-icon" />
             </div>
-    
+
+            <MoreUserDetails firstName={firstName} open={isOpen} onClose={() => {setIsOpen(false)}} />
+
         </div>
     )
 }

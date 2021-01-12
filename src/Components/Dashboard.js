@@ -70,6 +70,8 @@ function Dashboard() {
                    <button className="pagination__btn">  <IoIosArrowForward /> </button> </div>  
                 </div>
 
+                <div id="portal"></div>
+                
             </div>
             
         </div>
