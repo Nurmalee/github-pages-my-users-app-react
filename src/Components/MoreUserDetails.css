@@ -19,6 +19,7 @@
     z-index: 1000;
     border-radius: 20px;
     padding: 20px;
+    transition: 1000ms;
 }
 
 .back-to-results-btn {

@@ -61,7 +61,7 @@ function Dashboard() {
                     </div>
                 </form>
 
-                <UsersList users={users} />
+                <UsersList users={users} className="users__list" />
 
                 <div className="dashboard__right-footer">
                    <button className="list__download-btn"> <IoIosCloudDownload className="download-icon"/> Download Results </button>

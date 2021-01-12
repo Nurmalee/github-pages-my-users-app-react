@@ -18,23 +18,30 @@
     display: flex;
     align-items: center;
     flex: 1;
+    flex-wrap: wrap;
 }
 
 .picture-avatar {
     height: 65px !important;
     width: 65px !important;
     border: 5px solid rgb(55, 211, 195);
+    margin-right: 25px;
 }
 
 .user__info {
-    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin-right: 15px;
     flex: 1;
+    flex-wrap: wrap;
 }
 
 .user__info > h4 {
     font-size: 14px;
     margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .user__info > h5 {
@@ -43,6 +50,21 @@
     font-style: italic;
     color: #333;
     font-weight: 500;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user__contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.user__contact p {
+    font-size: 10px;
+    color: #777;
 }
 
 .user__btn {
@@ -60,15 +82,6 @@
     width: 15px !important;
 }
 
-.user__contact {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.user__contact p {
-    font-size: 11px;
-    color: #777;
+.user__btn:hover {
+    background-color: rgb(27, 124, 115);
 }
