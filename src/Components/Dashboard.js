@@ -3,6 +3,7 @@ import './Dashboard.css';
 import { FiSearch } from 'react-icons/fi';
 import allUsers from '../usersData/users';
 import UsersButtons from './UsersButtons';
+import UsersList from './UsersList';
 
 
 // const url = "https://randomuser.me/api/?results=4";
@@ -13,16 +14,15 @@ usersGender = ["all", ...new Set(usersGender)]
 function Dashboard() {
     const [users, setUsers] = useState(allUsers);
     const [genders] = useState(usersGender);
-    const [activeGender, setActiveGender] = useState("All Users");
+    const [activeGenderList, setActiveGenderList] = useState("All Users");
 
     const filterUsers = (gender) => {
         const genderUsers = (allUsers).filter(user => (user.gender === gender))
         setUsers(genderUsers)
-        setActiveGender(`${gender.charAt(0).toUpperCase() + gender.slice(1)} Users`);
-        // console.log(`${gender.charAt(0).toUpperCase() + gender.slice(1)} Users`);
+        setActiveGenderList(`${gender.charAt(0).toUpperCase() + gender.slice(1)} Users`);
         if(gender === "all"){
             setUsers(allUsers);
-            setActiveGender("All Users");
+            setActiveGenderList("All Users");
         }
     }
 
@@ -46,7 +46,7 @@ function Dashboard() {
             </div>
 
             <div className="dashboard__right">
-                <h3>{activeGender}</h3>
+                <h3>{activeGenderList}</h3>
                 <p>Filter by</p>
                 <form>
                     <div className="form-control-2">
@@ -54,7 +54,7 @@ function Dashboard() {
                         <input type="text" placeholder="Find in list"/>
                     </div>
                 </form>
-               {/* <UsersList users={users} /> */}
+               <UsersList users={users} />
                <div className="dashboard__right-footer">
 
                </div>
