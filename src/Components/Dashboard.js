@@ -21,6 +21,22 @@ function Dashboard() {
                    
                 </div>
             </div>
+
+            <div className="dashboard__right">
+                <h3>All Users</h3>
+                <p>Filter by</p>
+                <form>
+                    <div className="form-control-2">
+                        <FiSearch className="form-control-2__searchIcon"/>
+                        <input type="text" placeholder="Find in list"/>
+                    </div>
+                </form>
+               {/* <UsersList users={users} /> */}
+               <div className="dashboard__right-footer">
+
+               </div>
+               {/* <div id="portal"></div> */}
+            </div>
             
         </div>
     )
