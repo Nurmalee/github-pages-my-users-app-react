@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { FiSearch } from 'react-icons/fi';
 import { IoIosCloudDownload } from 'react-icons/io';
@@ -9,18 +9,21 @@ import MainSearchForm from './MainSearchForm';
 import Pagination from './Pagination';
 
 
-// const url = "https://randomuser.me/api/?results=4";
+const url = "https://randomuser.me/api/?results=15";
 
-let usersGender = (allUsers).map(user => user.gender);
-usersGender = ["all", ...new Set(usersGender)]
+// let usersGender = (allUsers).map(user => user.gender);
+// usersGender = ["all", ...new Set(usersGender)]
 
 function Dashboard() {
-    const [users, setUsers] = useState(allUsers);
-    const [genders] = useState(usersGender); 
-    const [activeGenderList, setActiveGenderList] = useState("All Users");
+    // const [users, setUsers] = useState(allUsers);
+    // const [genders, setGenders] = useState(usersGender);
+    const [buttonSorter, setButtonSorter] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [genders, setGenders] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const [searchedUser, setSearchedUser] = useState(allUsers[0]);
     const [isOpen, setIsOpen] = useState(false);
+    const [activeGenderList, setActiveGenderList] = useState("All Users");
     const [userNotInList, setUserNotInList] = useState(false);
 
      //PAGINATION CONCERNS
@@ -34,28 +37,45 @@ function Dashboard() {
     }
     //PAGINATION CONCERNS
 
+    useEffect(() => {
+        const fetchUsers = async () => {
+            const resp = await fetch(url);
+            const userObject = await resp.json();
+            const fetchedUsers = userObject.results;
+            console.log(fetchedUsers);
+            setUsers(fetchedUsers);
+            setButtonSorter(fetchedUsers);
+
+            let usersGender = (fetchedUsers).map(user => user.gender);
+            usersGender = ["all", ...new Set(usersGender)]
+            setGenders(usersGender)
+            console.log(usersGender);
+        }
+        fetchUsers();
+
+    }, [])
+
     const filterUsers = (gender) => {
-        if(gender === "all"){
-            setUsers(allUsers);
-            setActiveGenderList("All Users");
-            setCurrentPage(1)
-        } else {
-            const genderUsers = (allUsers).filter(user => (user.gender === gender))
+            const genderUsers = (buttonSorter).filter(user => (user.gender === gender))
             setUsers(genderUsers)
             setActiveGenderList(`${gender} users`); 
             setCurrentPage(1)
-        }
+
+            if(gender === "all"){
+            setUsers(buttonSorter);
+            setActiveGenderList("All Users");
+            setCurrentPage(1)
+            }
     }
 
     const handleSearchFormSubmit = (e) => {
         e.preventDefault();
         
         if(searchInput){
-            const searchResult = allUsers.find(user => {
+            const searchResult = users.find(user => {
                 const {name:{first, last}} = user;
-                return (first === searchInput || last === searchInput || `${first + last}` === searchInput);
+                return (first === searchInput || last === searchInput || (first + " " + last) === searchInput);
             })
-            setUserNotInList(false);
             if(searchResult){
                 setSearchedUser(searchResult);
                 setIsOpen(true);
@@ -66,10 +86,6 @@ function Dashboard() {
                 setUserNotInList(true);
             }
         }
-        // if(searchInput === ""){
-        //     setUserNotInList(false);
-        //     setCapitalizeNameSearch(false);
-        // }
     }
 
     const handleSearchInput = (e) => {
@@ -84,10 +100,10 @@ function Dashboard() {
                     <p>Welcome to your dashboard, kindly sort through the user base</p>
                 </div>
                 
-                <p className="search__entry-warning-1">Not getting proper response? make sure to capitalize your search e.g "Mark" not "mark" </p>
+                <p className="search__entry-warning">Not getting a proper response? check spellings & make sure to capitalize your search e.g "Mark" not "mark" </p>
                 <MainSearchForm handleSearchFormSubmit={handleSearchFormSubmit} searchInput={searchInput} handleSearchInput={handleSearchInput} searchedUser={searchedUser} isOpen={isOpen} close={() => setIsOpen(false)} />
                
-                {userNotInList ? <p className="search__entry-warning-2"> User not in current list </p> : <p className="search__entry-warning-1"> Found 1 match </p> }
+                {userNotInList && <p className="search__entry-warning"> User not in current list </p> }
                 
 
                 <div className="dashboard__left-users">

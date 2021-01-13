@@ -11,7 +11,7 @@
     align-content: center;
     margin: auto;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 30px;
     align-items: center;
     color: white;
 }
@@ -40,15 +40,14 @@
     font-size: 14px;
 }
 
-.search__entry-warning-1,
-.search__entry-warning-2 {
-    font-size: 9px;
+.search__entry-warning {
+    font-size: 7px;
     margin-bottom: 10px;
     font-style: italic;
     color: rgb(118, 243, 111);
 }
 
-.search__entry-warning-2 {
+.search__entry-warning:nth-of-type(2) {
     color: red
 }
 
@@ -119,6 +118,7 @@
     background-color: whitesmoke;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 30px 60px;
 }
 

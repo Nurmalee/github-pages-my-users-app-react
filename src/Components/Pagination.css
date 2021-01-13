@@ -1,13 +1,14 @@
 .list__pagination-btns {
     display: flex;
-    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .pagination__btn {
-    background-color: #ccc;
+    background-color: #aaa;
     font-size: 10px;
+    font-weight: 700;
     padding: 7px 9px;
-    border-radius: 7px;
+    border-radius: 5px;
     border: none;
     outline: none;
     margin: 2px;
