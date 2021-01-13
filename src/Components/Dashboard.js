@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './Dashboard.css';
 import { FiSearch } from 'react-icons/fi';
-import { IoIosArrowForward } from 'react-icons/io';
-import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosCloudDownload } from 'react-icons/io';
 import allUsers from '../usersData/users';
 import UsersButtons from './UsersButtons';
 import UsersList from './UsersList';
+import MainSearchForm from './MainSearchForm';
+import Pagination from './Pagination';
 
 
 // const url = "https://randomuser.me/api/?results=4";
@@ -14,37 +14,68 @@ import UsersList from './UsersList';
 let usersGender = (allUsers).map(user => user.gender);
 usersGender = ["all", ...new Set(usersGender)]
 
+// const defaultObjeect = {
+
+// }
+
 function Dashboard() {
     const [users, setUsers] = useState(allUsers);
     const [genders] = useState(usersGender);
     const [activeGenderList, setActiveGenderList] = useState("All Users");
-    const [searchInput, setSearchInput] = useState("");
+    const [searchInput, setSearchInput] = useState("Megan");
     const [searchedUser, setSearchedUser] = useState({});
+    const [isOpen, setIsOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [usersPerPage] = useState(3);
+
+    const indexOfLastUser = (currentPage * usersPerPage) - 1;
+    const indexOfFirstUser = indexOfLastUser - (usersPerPage - 1);
+    const currentUsers = users.slice(indexOfFirstUser, (indexOfLastUser + 1))
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    }
 
     const filterUsers = (gender) => {
-        const genderUsers = (allUsers).filter(user => (user.gender === gender))
-        setUsers(genderUsers)
-        setActiveGenderList(`${gender.charAt(0).toUpperCase() + gender.slice(1)} Users`);
         if(gender === "all"){
             setUsers(allUsers);
             setActiveGenderList("All Users");
+            setCurrentPage(1)
+        } else {
+            const genderUsers = (allUsers).filter(user => (user.gender === gender))
+            setUsers(genderUsers)
+            setActiveGenderList(`${gender} users`); 
+            setCurrentPage(1)
         }
     }
 
     const handleSearchForm = (e) => {
         e.preventDefault();
+        if(!searchInput) {
+            // console.log("NULL");
+            return null;
+        }
+
+        if(searchInput){
         const searchResult = allUsers.find(user => {
             const {name:{first, last}} = user;
-            return (first === searchInput || last === searchInput);
+            if(!searchInput.includes(first) && !searchInput.includes(last)){
+                console.log("NO - MATCH");
+                // return null;
+            } else {
+                return (first === searchInput || last === searchInput);
+            }
+           
         })
-
-        setSearchedUser(searchResult)
-        // console.log(searchedUser);
-
-        // const {name:{title, first, last}, location:{street:{number, name}, city, state}, email, phone, cell, dob:{age}, registered:{date}, picture:{large}, id:{value}} = searchResult;
+            setSearchedUser(searchResult);
+            setIsOpen(true);
+        }
     }
+    console.log(searchedUser);
 
-    // console.log(searchedUser);
+    const handleSearchValueChange = (e) => {
+        setSearchInput(e.target.value)
+    }
 
     return (
         <div className="dashboard">
@@ -54,12 +85,7 @@ function Dashboard() {
                     <p>Welcome to your dashboard, kindly sort through the user base</p>
                 </div>
 
-                <form onSubmit={handleSearchForm}>
-                    <div className="form-control">
-                        <FiSearch className="form-control__searchIcon"/>
-                        <input type="text" placeholder="Find a user" value={searchInput} onChange={(e) => {setSearchInput(e.target.value)}} />
-                    </div>
-                </form>
+               <MainSearchForm handleSearchForm={handleSearchForm} searchInput={searchInput} handleSearchValueChange={handleSearchValueChange} searchedUser={searchedUser} isOpen={isOpen} close={() => setIsOpen(false)} />
 
                 <div className="dashboard__left-users">
                     <h3>Show users</h3>
@@ -78,13 +104,13 @@ function Dashboard() {
                     </div>
                 </form>
 
-                <UsersList users={users} searchedUser={searchedUser} className="users__list" />
+                <UsersList users={currentUsers} className="users__list" />
 
                 <div className="dashboard__right-footer">
                    <button className="list__download-btn"> <IoIosCloudDownload className="download-icon"/> Download Results </button>
 
-                   <div className="list__pagination-btns">  <button className="pagination__btn"> <IoIosArrowBack /> </button>
-                   <button className="pagination__btn">  <IoIosArrowForward /> </button> </div>  
+                   <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate}  />
+
                 </div>
             
             </div>

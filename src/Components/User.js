@@ -6,13 +6,9 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { BiEnvelope } from 'react-icons/bi';
 import { FiPhoneCall } from 'react-icons/fi';
 
-function User({title, firstName, lastName, streetNum, streetName, city, state, email, age, registered, phone, cell, picture, searchedUser}) {
+function User({title, firstName, lastName, streetNum, streetName, city, state, email, age, registered, phone, cell, picture}) {
 
     const [isOpen, setIsOpen] = useState(false);
-
-    const showOpenBtn = () => {
-        setIsOpen(true)
-    }
 
     return (
         <div className="user__profile">
@@ -31,11 +27,11 @@ function User({title, firstName, lastName, streetNum, streetName, city, state, e
                 </div>
             </div>
 
-            <div className="user__btn" onClick={showOpenBtn}>
+            <div className="user__btn" onClick={() => setIsOpen(true)}>
                 <ArrowForwardIcon className="user__btn-icon" />
             </div>
 
-            <MoreUserDetails searchedUser={searchedUser} title={title} firstName={firstName} lastName={lastName} streetNum={streetNum} streetName={streetName} city={city} state={state} email={email} phone={phone} cell={cell} age={age} registered={registered} picture={picture} open={isOpen} onClose={() => {setIsOpen(false)}} />
+            <MoreUserDetails title={title} firstName={firstName} lastName={lastName} streetNum={streetNum} streetName={streetName} city={city} state={state} email={email} phone={phone} cell={cell} age={age} registered={registered} picture={picture} open={isOpen} onClose={() => {setIsOpen(false)}} />
 
         </div>
     )

@@ -7,13 +7,13 @@ import { BiEnvelope } from 'react-icons/bi';
 import { FiPhoneCall } from 'react-icons/fi';
 import { BsPhone } from 'react-icons/bs';
 
-function MoreUserDetails ({searchedUser, title, firstName, lastName, streetNum, streetName, city, state, email, phone, cell, age, registered, open, onClose, picture}) {
+function MoreUserDetails ({title, firstName, lastName, streetNum, streetName, city, state, email, phone, cell, age, registered, open, onClose, picture}) {
     if(!open) return null
     return ReactDom.createPortal (
         <>
         <div className="overlay">
         <div className="modal">
-            <button onClick={onClose} className="back-to-results-btn"> < BsArrowLeftShort className="back-arrow-icon"/> RESULTS</button>
+            <button onClick={onClose} className="back-to-results-btn"> < BsArrowLeftShort className="back-arrow-icon"/> RESULTS/DASHBORAD </button>
             <div className="more__user-details">
                 <Avatar src={picture} className="user__picture"/>
                 <div className="other__details">

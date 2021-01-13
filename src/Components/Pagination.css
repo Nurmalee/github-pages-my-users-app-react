@@ -1,0 +1,27 @@
+.list__pagination-btns {
+    display: flex;
+    align-items: flex-start;
+}
+
+.pagination__btn {
+    background-color: #ccc;
+    font-size: 10px;
+    padding: 7px 9px;
+    border-radius: 7px;
+    border: none;
+    outline: none;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.pagination__btn:hover,
+.pagination__btn:focus {
+    background-color: #111;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #333;
+}
+
+.pagination__btn:hover {
+    background-color: #777;
+}
