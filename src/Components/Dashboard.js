@@ -14,27 +14,25 @@ import Pagination from './Pagination';
 let usersGender = (allUsers).map(user => user.gender);
 usersGender = ["all", ...new Set(usersGender)]
 
-// const searchUser = (user) => {
-//     log
-// }
-
 function Dashboard() {
     const [users, setUsers] = useState(allUsers);
-    const [genders] = useState(usersGender); //an array for dynamic population of users' gender buttons
-    const [activeGenderList, setActiveGenderList] = useState("All Users"); //dynamically changes gender list heading on set() and on click of gender buttons
+    const [genders] = useState(usersGender); 
+    const [activeGenderList, setActiveGenderList] = useState("All Users");
     const [searchInput, setSearchInput] = useState("");
     const [searchedUser, setSearchedUser] = useState(allUsers[0]);
     const [isOpen, setIsOpen] = useState(false);
+    const [userNotInList, setUserNotInList] = useState(false);
+
+     //PAGINATION CONCERNS
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(3);
-
     const indexOfLastUser = (currentPage * usersPerPage) - 1;
     const indexOfFirstUser = indexOfLastUser - (usersPerPage - 1);
     const currentUsers = users.slice(indexOfFirstUser, (indexOfLastUser + 1))
-
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
+    //PAGINATION CONCERNS
 
     const filterUsers = (gender) => {
         if(gender === "all"){
@@ -53,43 +51,28 @@ function Dashboard() {
         e.preventDefault();
         
         if(searchInput){
-        const searchResult = allUsers.find(user => {
-            const {name:{first, last}} = user;
-            
-            if(searchInput.includes(first) && searchInput.includes(last)){
-                alert("MATCH");
-                return null;
+            const searchResult = allUsers.find(user => {
+                const {name:{first, last}} = user;
+                return (first === searchInput || last === searchInput || `${first + last}` === searchInput);
+            })
+            setUserNotInList(false);
+            if(searchResult){
+                setSearchedUser(searchResult);
+                setIsOpen(true);
+                setUserNotInList(false);
             }
-            return (first === searchInput || last === searchInput);
-            
-           
-        })
 
-        if(searchResult){
-            setSearchedUser(searchResult);
-            setIsOpen(true);
+            if(!searchResult){
+                setUserNotInList(true);
+            }
         }
-           
-        }
+        // if(searchInput === ""){
+        //     setUserNotInList(false);
+        //     setCapitalizeNameSearch(false);
+        // }
     }
 
-    // let namesArr = [];
-
-    // allUsers.map(user => {
-    //     const {name:{first, last}} = user;
-    //     for(let i = 1; i <= allUsers.length; i++){
-    //         namesArr = [...namesArr, first, last]
-    //     }
-    //     return namesArr;
-    // })
-
-    // namesArr = [...new Set(namesArr)]
-    // console.log(namesArr);
-
     const handleSearchInput = (e) => {
-        // if(!(e.target.value).includes("nuru")){
-        //     alert("WE ARE GETTING THERE");
-        // }
         setSearchInput(e.target.value)
     }
 
@@ -100,8 +83,12 @@ function Dashboard() {
                     <h3>Hello, <span> Nurudeen </span></h3>
                     <p>Welcome to your dashboard, kindly sort through the user base</p>
                 </div>
-
-               <MainSearchForm handleSearchFormSubmit={handleSearchFormSubmit} searchInput={searchInput} handleSearchInput={handleSearchInput} searchedUser={searchedUser} isOpen={isOpen} close={() => setIsOpen(false)} />
+                
+                <p className="search__entry-warning-1">Not getting proper response? make sure to capitalize your search e.g "Mark" not "mark" </p>
+                <MainSearchForm handleSearchFormSubmit={handleSearchFormSubmit} searchInput={searchInput} handleSearchInput={handleSearchInput} searchedUser={searchedUser} isOpen={isOpen} close={() => setIsOpen(false)} />
+               
+                {userNotInList ? <p className="search__entry-warning-2"> User not in current list </p> : <p className="search__entry-warning-1"> Found 1 match </p> }
+                
 
                 <div className="dashboard__left-users">
                     <h3>Show users</h3>
@@ -113,10 +100,10 @@ function Dashboard() {
                 <h3>{activeGenderList} ({users.length})</h3>
                 <p>Filter by</p>
 
-                <form>
+                <form onSubmit={handleSearchFormSubmit}>
                     <div className="form-control-2">
                         <FiSearch className="form-control-2__searchIcon"/>
-                        <input type="text" placeholder="Find in list"/>
+                        <input type="text" placeholder="Find in list" value={searchInput} onChange={handleSearchFormSubmit} />
                     </div>
                 </form>
 
@@ -128,9 +115,7 @@ function Dashboard() {
                    <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate}  />
 
                 </div>
-            
             </div>
-            
         </div>
     )
 }

@@ -40,15 +40,27 @@
     font-size: 14px;
 }
 
+.search__entry-warning-1,
+.search__entry-warning-2 {
+    font-size: 9px;
+    margin-bottom: 10px;
+    font-style: italic;
+    color: rgb(118, 243, 111);
+}
+
+.search__entry-warning-2 {
+    color: red
+}
+
 .dashboard__right {
     border: 1px solid white;
-    padding: 40px 70px;
+    padding: 35px 70px;
     /* height: 100vh; */
     /* overflow-y: scroll; */
     background-color: whitesmoke;
     flex: 0.45;
     border-radius: 15px;
-    margin: 10px 0;
+    margin: 5px 0;
     margin-right: 10px;
     box-sizing: border-box;
     position: relative;

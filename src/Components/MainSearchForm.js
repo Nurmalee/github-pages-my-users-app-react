@@ -20,17 +20,16 @@ function MainSearchForm({ handleSearchFormSubmit, searchInput, handleSearchInput
                 </div>
             </form>
 
-            <MoreUserDetails searchedUser={searchedUser} searchInput={searchInput} isOpen={isOpen} close={close} />
+            <MoreUserDetails searchedUser={searchedUser} isOpen={isOpen} close={close} />
         </>
     )
 }
 
-export function MoreUserDetails ({searchedUser, searchInput, isOpen, close}) {
+export function MoreUserDetails ({searchedUser, isOpen, close}) {
      const {name:{title, first, last}, location:{street:{number, name}, city, state}, email, phone, cell, dob:{age}, registered:{date}, picture:{large}} = searchedUser;
 
 
     if(!isOpen) return null
-    if(!searchInput.includes(first) && !searchInput.includes(last)) return null;
     return ReactDom.createPortal (
         <>
         <div className="overlay">
@@ -56,5 +55,3 @@ export function MoreUserDetails ({searchedUser, searchInput, isOpen, close}) {
 
 
 export default MainSearchForm
-
- // const {name:{title, first, last}, location:{street:{number, name}, city, state}, email, phone, cell, dob:{age}, registered:{date}, picture:{large}, id:{value}} = searchResult;
