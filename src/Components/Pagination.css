@@ -21,7 +21,3 @@
     transform: scale(1.1);
     box-shadow: 0 0 10px #333;
 }
-
-.pagination__btn:hover {
-    background-color: #777;
-}

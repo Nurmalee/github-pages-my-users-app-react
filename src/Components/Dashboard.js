@@ -14,16 +14,16 @@ import Pagination from './Pagination';
 let usersGender = (allUsers).map(user => user.gender);
 usersGender = ["all", ...new Set(usersGender)]
 
-// const defaultObjeect = {
-
+// const searchUser = (user) => {
+//     log
 // }
 
 function Dashboard() {
     const [users, setUsers] = useState(allUsers);
-    const [genders] = useState(usersGender);
-    const [activeGenderList, setActiveGenderList] = useState("All Users");
-    const [searchInput, setSearchInput] = useState("Megan");
-    const [searchedUser, setSearchedUser] = useState({});
+    const [genders] = useState(usersGender); //an array for dynamic population of users' gender buttons
+    const [activeGenderList, setActiveGenderList] = useState("All Users"); //dynamically changes gender list heading on set() and on click of gender buttons
+    const [searchInput, setSearchInput] = useState("");
+    const [searchedUser, setSearchedUser] = useState(allUsers[0]);
     const [isOpen, setIsOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(3);
@@ -49,31 +49,47 @@ function Dashboard() {
         }
     }
 
-    const handleSearchForm = (e) => {
+    const handleSearchFormSubmit = (e) => {
         e.preventDefault();
-        if(!searchInput) {
-            // console.log("NULL");
-            return null;
-        }
-
+        
         if(searchInput){
         const searchResult = allUsers.find(user => {
             const {name:{first, last}} = user;
-            if(!searchInput.includes(first) && !searchInput.includes(last)){
-                console.log("NO - MATCH");
-                // return null;
-            } else {
-                return (first === searchInput || last === searchInput);
+            
+            if(searchInput.includes(first) && searchInput.includes(last)){
+                alert("MATCH");
+                return null;
             }
+            return (first === searchInput || last === searchInput);
+            
            
         })
+
+        if(searchResult){
             setSearchedUser(searchResult);
             setIsOpen(true);
         }
+           
+        }
     }
-    console.log(searchedUser);
 
-    const handleSearchValueChange = (e) => {
+    // let namesArr = [];
+
+    // allUsers.map(user => {
+    //     const {name:{first, last}} = user;
+    //     for(let i = 1; i <= allUsers.length; i++){
+    //         namesArr = [...namesArr, first, last]
+    //     }
+    //     return namesArr;
+    // })
+
+    // namesArr = [...new Set(namesArr)]
+    // console.log(namesArr);
+
+    const handleSearchInput = (e) => {
+        // if(!(e.target.value).includes("nuru")){
+        //     alert("WE ARE GETTING THERE");
+        // }
         setSearchInput(e.target.value)
     }
 
@@ -85,7 +101,7 @@ function Dashboard() {
                     <p>Welcome to your dashboard, kindly sort through the user base</p>
                 </div>
 
-               <MainSearchForm handleSearchForm={handleSearchForm} searchInput={searchInput} handleSearchValueChange={handleSearchValueChange} searchedUser={searchedUser} isOpen={isOpen} close={() => setIsOpen(false)} />
+               <MainSearchForm handleSearchFormSubmit={handleSearchFormSubmit} searchInput={searchInput} handleSearchInput={handleSearchInput} searchedUser={searchedUser} isOpen={isOpen} close={() => setIsOpen(false)} />
 
                 <div className="dashboard__left-users">
                     <h3>Show users</h3>
@@ -94,7 +110,7 @@ function Dashboard() {
             </div>
 
             <div className="dashboard__right">
-                <h3>{activeGenderList}</h3>
+                <h3>{activeGenderList} ({users.length})</h3>
                 <p>Filter by</p>
 
                 <form>
