@@ -7,16 +7,12 @@ import UsersButtons from './UsersButtons';
 import UsersList from './UsersList';
 import MainSearchForm from './MainSearchForm';
 import Pagination from './Pagination';
+import { CSVLink } from "react-csv";
 
 
 const url = "https://randomuser.me/api/?results=15";
 
-// let usersGender = (allUsers).map(user => user.gender);
-// usersGender = ["all", ...new Set(usersGender)]
-
 function Dashboard() {
-    // const [users, setUsers] = useState(allUsers);
-    // const [genders, setGenders] = useState(usersGender);
     const [buttonSorter, setButtonSorter] = useState([]);
     const [users, setUsers] = useState([]);
     const [genders, setGenders] = useState([]);
@@ -39,17 +35,19 @@ function Dashboard() {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const resp = await fetch(url);
-            const userObject = await resp.json();
-            const fetchedUsers = userObject.results;
-            console.log(fetchedUsers);
-            setUsers(fetchedUsers);
-            setButtonSorter(fetchedUsers);
-
-            let usersGender = (fetchedUsers).map(user => user.gender);
-            usersGender = ["all", ...new Set(usersGender)]
-            setGenders(usersGender)
-            console.log(usersGender);
+            try{
+                const resp = await fetch(url);
+                const userObject = await resp.json();
+                const fetchedUsers = userObject.results;
+                setUsers(fetchedUsers);
+                setButtonSorter(fetchedUsers);
+    
+                let usersGender = (fetchedUsers).map(user => user.gender);
+                usersGender = ["all", ...new Set(usersGender)];
+                setGenders(usersGender);
+            } catch(error){
+                console.log(error);
+            }
         }
         fetchUsers();
 
@@ -92,6 +90,16 @@ function Dashboard() {
         setSearchInput(e.target.value)
     }
 
+    const printedUser = users.map((user) => {
+        const {gender, name:{title, first, last}, location:{street:{number, name}, city, state, country, postcode, coordinates:{latitiude, longitude}, timezone:{offset, description}}, email, login:{username, password}, dob:{age}, phone, cell, registered:{date}, nat} = user;
+        return (
+           {gender, title, first, last, number, name, city, state, country, postcode, latitiude, longitude, offset, description, email, username, password, phone, cell, age, date, nat}
+        )
+    })
+    const csvData = printedUser;
+
+    
+   
     return (
         <div className="dashboard">
             <div className="dashboard__left">
@@ -122,11 +130,12 @@ function Dashboard() {
                         <input type="text" placeholder="Find in list" value={searchInput} onChange={handleSearchFormSubmit} />
                     </div>
                 </form>
-
+               
                 <UsersList users={currentUsers} className="users__list" />
 
                 <div className="dashboard__right-footer">
-                   <button className="list__download-btn"> <IoIosCloudDownload className="download-icon"/> Download Results </button>
+                   {/* <button className="list__download-btn"> <IoIosCloudDownload className="download-icon"/> Download Results </button> */}
+                   <CSVLink className="list__download-btn" data={csvData}> <IoIosCloudDownload className="download-icon"/> Download Results</CSVLink>
 
                    <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate}  />
 

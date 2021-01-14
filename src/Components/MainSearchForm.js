@@ -26,7 +26,7 @@ function MainSearchForm({ handleSearchFormSubmit, searchInput, handleSearchInput
 }
 
 export function MoreUserDetails ({searchedUser, isOpen, close}) {
-     const {name:{title, first, last}, location:{street:{number, name}, city, state}, email, phone, cell, dob:{age}, registered:{date}, picture:{large}} = searchedUser;
+    const {name:{title, first, last}, location:{street:{number, name}, city, state}, email, phone, cell, dob:{age}, registered:{date}, picture:{large}} = searchedUser;
 
 
     if(!isOpen) return null
