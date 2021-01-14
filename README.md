@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Getting Started with MY USERS APP
+This project is hosted and deployed at https://nurmalee.github.io/github-pages-my-users-app-react/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Technologies and UI dependencies
+  -- REACT JS
+  -- MATERIAL DESIGN ICONS (MATERIAL UI)
+  -- REACT ICONS etc..
 
-## Available Scripts
+## Available Features
+Below is a summary of the main features implemented in this web app (in no particular order):
 
-In the project directory, you can run:
+### `Ultra Responsive Design`
+It is fascinating.... This app has been made fairly responsive on all possible desktop screen widths and to some extent on mobile screens
 
-### `npm star`
+### `Random User Generation on every load/reload`
+This app incoporates a random user API that generates 15 users (males and females in no particular ratio) on first load and on every page reload. Although only a maximum of 3 of the 15 users are displayed at a time.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `Search User in List`
+With the provided search forms, users present in the curret list can be searched either by their First Name, Last Name or a combination of both.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+However, note that :
+  - the form input field only accepts names that have been spelt correctly and that have been properly "## capitalized", e.g "Mark" not "mark"
+  - if a combination of the first and last names will be used to search for a user, then they should be seperated by only a single space, any extra spacing before or after the names will render the names absent in list even if they are technically present. e.g "Mark Spencer" not " Mark   Spencer"
+Also only the form field on the left dashboard panel accepts input as it reflects its value in the second form input on the right side of the dashboard. This was done for flexibilty purposes.
 
-### `npm test`
+### `Switch Users List/Categories by Gender`
+This feature contains dynamic switch buttons that enables easy search or easy sort through on a list of users by reducing/filtering the list based on their gender. These buttons are dynamic such that they populate on addition of another category of gender to the list e.g if a new user is added to the list with a new gender say "hemale", a new button will be created called "hemale" with the ability to filter users with the new gender on a separate list 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Get More User Details on Click`
+Located alongide each user card is a button that when clicked, isolates the user on the card and returns more information about the user in a modal at the center of the page similar to the results of a user search from the forms. The extra user details is displayed at the center of the page in order to simulate making them the center of attention
 
-### `npm run build`
+### `Custom Pagination of User Lists`
+Since the API has been customized to return 15 users, and only a maximum of 3 users are displayed at once, it is required that there need to be buttons for pagination or navigation through the other pages. Hence, this buttons. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Note, this pagination buttons has been made custom to return in numbers based on the number of total users in the list as called form the API or if locally initialized.
