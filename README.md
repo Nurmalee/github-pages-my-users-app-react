@@ -33,3 +33,6 @@ Located alongide each user card is a button that when clicked, isolates the user
 Since the API has been customized to return 15 users, and only a maximum of 3 users are displayed at once, it is required that there need to be buttons for pagination or navigation through the other pages. Hence, these buttons. 
 
 Note, this pagination buttons has been made custom to return in numbers based on the number of total users in the list as called form the API or if locally initialized.
+
+### `Download Results Button`
+This app includes a button that downloads the list of users and presents their details in a .csv file where it can easily used for further applications. It generates a new list of users and their details after every reload

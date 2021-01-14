@@ -13,8 +13,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 300px;
-    min-width: 300px;
+    height: 350px;
+    max-width: 400px;
     background-color: whitesmoke;
     z-index: 1000;
     border-radius: 20px;
@@ -24,7 +24,6 @@
 
 .back-to-results-btn {
     border: none;
-    /* outline: none; */
     background-color: transparent;
     display: flex;
     align-items: center;
@@ -65,7 +64,6 @@
 
 .user__email {
     background-color: #ddd;
-    /* max-width: 200px; */
     flex-wrap: wrap;
     font-size: 10px;
     

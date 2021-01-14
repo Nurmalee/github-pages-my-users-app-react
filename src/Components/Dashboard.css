@@ -123,6 +123,7 @@
 }
 
 .list__download-btn {
+    text-decoration: none;
     padding: 7px 15px;
     border-radius: 20px;
     display: flex;

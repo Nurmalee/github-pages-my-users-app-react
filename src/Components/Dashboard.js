@@ -90,13 +90,13 @@ function Dashboard() {
         setSearchInput(e.target.value)
     }
 
-    const printedUser = users.map((user) => {
+    const printUsersAsCSV = users.map((user) => {
         const {gender, name:{title, first, last}, location:{street:{number, name}, city, state, country, postcode, coordinates:{latitiude, longitude}, timezone:{offset, description}}, email, login:{username, password}, dob:{age}, phone, cell, registered:{date}, nat} = user;
         return (
            {gender, title, first, last, number, name, city, state, country, postcode, latitiude, longitude, offset, description, email, username, password, phone, cell, age, date, nat}
         )
     })
-    const csvData = printedUser;
+    const csvData = printUsersAsCSV;
 
     
    
@@ -134,11 +134,8 @@ function Dashboard() {
                 <UsersList users={currentUsers} className="users__list" />
 
                 <div className="dashboard__right-footer">
-                   {/* <button className="list__download-btn"> <IoIosCloudDownload className="download-icon"/> Download Results </button> */}
                    <CSVLink className="list__download-btn" data={csvData}> <IoIosCloudDownload className="download-icon"/> Download Results</CSVLink>
-
-                   <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate}  />
-
+                   <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate} />
                 </div>
             </div>
         </div>
