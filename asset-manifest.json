@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/github-pages-my-users-app-react/static/css/main.8a262a01.chunk.css",
-    "main.js": "/github-pages-my-users-app-react/static/js/main.1c0c5746.chunk.js",
-    "main.js.map": "/github-pages-my-users-app-react/static/js/main.1c0c5746.chunk.js.map",
+    "main.css": "/github-pages-my-users-app-react/static/css/main.d0d7183e.chunk.css",
+    "main.js": "/github-pages-my-users-app-react/static/js/main.c161c314.chunk.js",
+    "main.js.map": "/github-pages-my-users-app-react/static/js/main.c161c314.chunk.js.map",
     "runtime-main.js": "/github-pages-my-users-app-react/static/js/runtime-main.1dc97ea7.js",
     "runtime-main.js.map": "/github-pages-my-users-app-react/static/js/runtime-main.1dc97ea7.js.map",
     "static/js/2.afa5afc7.chunk.js": "/github-pages-my-users-app-react/static/js/2.afa5afc7.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.e153fa6f.chunk.js": "/github-pages-my-users-app-react/static/js/3.e153fa6f.chunk.js",
     "static/js/3.e153fa6f.chunk.js.map": "/github-pages-my-users-app-react/static/js/3.e153fa6f.chunk.js.map",
     "index.html": "/github-pages-my-users-app-react/index.html",
-    "static/css/main.8a262a01.chunk.css.map": "/github-pages-my-users-app-react/static/css/main.8a262a01.chunk.css.map",
+    "static/css/main.d0d7183e.chunk.css.map": "/github-pages-my-users-app-react/static/css/main.d0d7183e.chunk.css.map",
     "static/js/2.afa5afc7.chunk.js.LICENSE.txt": "/github-pages-my-users-app-react/static/js/2.afa5afc7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1dc97ea7.js",
     "static/js/2.afa5afc7.chunk.js",
-    "static/css/main.8a262a01.chunk.css",
-    "static/js/main.1c0c5746.chunk.js"
+    "static/css/main.d0d7183e.chunk.css",
+    "static/js/main.c161c314.chunk.js"
   ]
 }
