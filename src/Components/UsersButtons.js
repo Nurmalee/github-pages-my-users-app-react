@@ -6,7 +6,7 @@ import { HiUserGroup } from 'react-icons/hi';
 
 function UsersButtons({genders, filterUsers}) {
     return (
-        <div className="users__buttons">
+        <div className="users__buttons" data-testid="gender-buttons">
             {genders.map((gender, index) => {
                 return (
                 <div className="users__btn-container" key={index}>

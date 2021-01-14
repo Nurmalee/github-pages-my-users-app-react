@@ -105,7 +105,7 @@ function Dashboard() {
     
    
     return (
-        <div className="dashboard">
+        <div className="dashboard" datatest-id="dashboard__component">
             <div className="dashboard__left">
                 <div className="dashboard__left-title">
                     <h3>Hello, <span> Nurudeen </span></h3>
@@ -134,9 +134,8 @@ function Dashboard() {
                         <input type="text" placeholder="Find in list" value={searchInput} onChange={handleSearchFormSubmit} />
                     </div>
                 </form>
-               
-                {loading && <h1 className="data__fetch-info">Fetching Data.. Hold on a second.. </h1> }
 
+                {loading && <h1 className="data__fetch-info">Fetching Data.. Hold on a second.. </h1> }
                 <UsersList users={currentUsers} className="users__list" />
 
                 <div className="dashboard__right-footer">
