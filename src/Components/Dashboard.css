@@ -153,6 +153,11 @@
     transform: rotate(-30deg);
 }
 
+.data__fetch-info {
+    font-style: italic;
+    color: teal;
+}
+
 @media screen and (min-width: 900px) {
     .dashboard {
         display: flex;

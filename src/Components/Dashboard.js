@@ -18,6 +18,7 @@ function Dashboard() {
     const [genders, setGenders] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const [searchedUser, setSearchedUser] = useState(allUsers[0]);
+    const [loading, setLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
     const [activeGenderList, setActiveGenderList] = useState("All Users");
     const [userNotInList, setUserNotInList] = useState(false);
@@ -35,6 +36,7 @@ function Dashboard() {
 
     useEffect(() => {
         const fetchUsers = async () => {
+            setLoading(true);
             try{
                 const resp = await fetch(url);
                 const userObject = await resp.json();
@@ -46,8 +48,10 @@ function Dashboard() {
                 usersGender = ["all", ...new Set(usersGender)];
                 setGenders(usersGender);
             } catch(error){
+                setLoading(false);
                 console.log(error);
             }
+            setLoading(false);
         }
         fetchUsers();
 
@@ -131,6 +135,8 @@ function Dashboard() {
                     </div>
                 </form>
                
+                {loading && <h1 className="data__fetch-info">Fetching Data.. Hold on a second.. </h1> }
+
                 <UsersList users={currentUsers} className="users__list" />
 
                 <div className="dashboard__right-footer">
