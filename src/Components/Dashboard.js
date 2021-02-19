@@ -92,6 +92,7 @@ function Dashboard() {
 
     const handleSearchInput = (e) => {
         setSearchInput(e.target.value)
+        console.log(searchInput);
     }
 
     const printUsersAsCSV = users.map((user) => {

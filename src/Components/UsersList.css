@@ -1,4 +1,5 @@
 .users__list {
     min-height: 60vh;
     margin-bottom: 65px;
+    position: relative;
 }

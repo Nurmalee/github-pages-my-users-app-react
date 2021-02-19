@@ -6,12 +6,19 @@ import { BsArrowLeftShort } from 'react-icons/bs';
 import { BiEnvelope } from 'react-icons/bi';
 import { FiPhoneCall } from 'react-icons/fi';
 import { BsPhone } from 'react-icons/bs';
+import { motion } from 'framer-motion'
 
 function MoreUserDetails ({title, firstName, lastName, streetNum, streetName, city, state, email, phone, cell, age, registered, open, onClose, picture}) {
     if(!open) return null
     return ReactDom.createPortal (
         <>
-        <div className="overlay">
+        <motion.div className="overlay" initial={{ scale: 0 }}
+        animate={{ rotate: 360, scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20
+        }}>
         <div className="modal">
             <button onClick={onClose} className="back-to-results-btn"> < BsArrowLeftShort className="back-arrow-icon"/> RESULTS/DASHBORAD </button>
             <div className="more__user-details">
@@ -26,7 +33,7 @@ function MoreUserDetails ({title, firstName, lastName, streetNum, streetName, ci
                 </div>
             </div>
         </div>
-        </div>
+        </motion.div>
         </>,
         document.getElementById('portal')
     )
